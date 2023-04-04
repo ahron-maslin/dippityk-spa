@@ -40,3 +40,12 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+
+_favicon.ico
+.env
+.yarnrc
+.yarn
+package-lock.json
+*.log
+notes.md

@@ -1,0 +1,60 @@
+<p>placeholder</p>
+  
+  <!--
+
+    <div>
+      <h3>Contact Us</h3>
+      <mat-divider>
+      </div>
+      <div class="form-size">
+        <form class="contact" [formGroup]="form" method="post" (ngSubmit)="onSubmit(formDirective)" [hidden]="submitted || isLoading" novalidate #formDirective="ngForm">
+          <h3>Send us your Feedback</h3>
+          <p>
+            <mat-form-field class="half-width">
+              <input matInput [formControl]="firstname" name="firstname" formControlName="firstname" placeholder="First Name" type="text"
+              required>
+            </mat-form-field>
+            <mat-form-field class="half-width">
+              <input matInput [formControl]="lastname" name="lastname" formControlName="lastname" placeholder="Last Name" type="text"
+              required>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="half-width">
+          <input matInput [formControl]="email" name="email" formControlName="email" placeholder="Email" type="email"
+            email required>
+
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="full-width">
+            <textarea matInput name="message" formControlName="message" placeholder="Your Feedback" rows=12>
+            </textarea>
+          </mat-form-field>
+        </p>
+        <p>
+          <button type="submit" name="submit" [disabled]="isLoading" mat-button
+          class="background-primary text-floral-white">Submit</button></p>
+          <input [formControl]="honeypot" class="hidden" type="text" />
+        </form>
+      </div>
+      <div fxFlex>
+        <div fxLayoutAlign="center center">
+          <div [hidden]="!isLoading">
+            <h3>Submitting Form</h3>
+            <mat-spinner></mat-spinner>
+            <br>
+          </div>
+          <div *ngIf="submitted" class="center-text">
+            <div>
+              <span>
+                <h1 class="mat-display-1">{{responseMessage}}</h1>
+              </span>
+            </div>
+        <div style="margin-left: 1em;">
+          <button type="resend" name="resend" (click)="resetForm()" mat-button class="background-primary text-floral-white">Resend
+            Feedback</button>
+          </div>
+        </div>
+      </div>  
+    -->

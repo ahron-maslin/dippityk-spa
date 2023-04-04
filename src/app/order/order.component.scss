@@ -1,0 +1,37 @@
+$image-box: 300px;
+
+.example-card {   
+  margin-bottom: 2em;
+  height: $image-box;
+  width: $image-box;
+  max-width: $image-box;
+  max-height: $image-box;
+}
+
+mat-card-actions > span {
+  font-size: 80%;
+}
+
+.parent {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.item-image {
+  display: flex;
+  justify-content: space-around;
+  height: 200px;
+}
+
+.item-image img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.margin-left {
+  margin-left: auto;
+}
+

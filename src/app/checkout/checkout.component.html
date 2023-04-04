@@ -1,0 +1,28 @@
+<h3>Cart</h3>
+<div class="cart-item" *ngFor="let item of items">
+  <span>{{ item.name }} </span>
+  <span>{{ item.quantity }}</span>
+  <span>Price: {{item.quantity * item.price | currency : "ILS" : "symbol" }}</span>
+</div>
+
+<p>Total: {{sumTotal | currency : "ILS" : "symbol" }}</p>
+
+<form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+  <p>
+    <mat-form-field class="half-width">
+      <input matInput formControlName="name" id="name" name="name" 
+      placeholder="First Name" type="text" required>
+    </mat-form-field>
+    <mat-form-field class="half-width">
+      <input matInput formControlName="email" id="email" name="email" 
+       placeholder="Email Address" type="email" required>
+    </mat-form-field>
+  </p>
+  <button mat-button class="button" type="submit" [disabled]="orderForm.invalid">Purchase</button>
+  <input [formControl]="honeypot" [hidden]="true" type="text" />
+</form>
+<div [hidden]="!isLoading">
+  <h3>Submitting Form</h3>
+  <mat-spinner></mat-spinner>
+  <br>
+</div>

@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+  <span><img src="/assets/logo.png" height=30 width=30></span>
+  <a mat-button routerLink="/home"><mat-icon>home</mat-icon> Home</a>
+  <a mat-button routerLink="/order"><mat-icon>store</mat-icon>  Order</a>
+  <a mat-button routerLink="/contact"><mat-icon>contacts</mat-icon> Contact</a>
+  <span class="flex-spacer"></span>
+  <a mat-icon-button (click)="toggleService.toggleMenu()" [disabled]="items.length == 0" [hidden]="!toggleService.showCart"><!--ngif items -->
+    <mat-icon matBadgeColor="accent" matBadge="{{ items.length }}" [matBadgeHidden]="items.length == 0" aria-label="View Cart">
+      shopping_cart
+    </mat-icon>
+  </a>
+</mat-toolbar>
+

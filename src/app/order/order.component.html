@@ -1,0 +1,55 @@
+<div (click)="closeSidebar()">
+  <div>
+    <h1>Our Products</h1>
+  </div>
+  <div class="parent">
+    <mat-card class="example-card" *ngFor="let product of products">
+      <mat-card-header>
+        <mat-card-title>{{ product.displayed_name }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="item-image">
+          <img src="{{ product.image }}" alt="{{ product.name }}" />
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <span class="margin-left">
+          <p>
+            {{ product.price * product.quantity | currency : "ILS" : "symbol" }}
+          </p>
+        </span>
+        <span class="margin-left">
+          <button
+            mat-fab-button
+            (click)="product.quantity = product.quantity - 1"
+            [disabled]="product.quantity == 0 || product.added"
+          >
+          <!--maybe change these to functions one day to preserve all logic in the service
+              if product.added then modify items qty too. otherwise just change products-->
+            <mat-icon>remove</mat-icon>
+          </button>
+          <button
+            mat-fab-button
+            (click)="product.quantity = product.quantity + 1"
+            [disabled]="product.quantity == 10 || product.added"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+        </span>
+        <!--clear button-->
+        <span class="margin-left">
+          <a
+            mat-button
+            (click)="addToCart(product)"
+            [disabled]="product.quantity == 0 || product.added"
+            matBadge="{{ product.quantity }}"
+            [matBadgeHidden]="product.quantity == 0">
+            <mat-icon>shop</mat-icon> Add to Cart
+          </a>
+        </span>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+<app-side-menu [@slideInOut]="toggleService.menuState" > <!--hide it if no items-->
+</app-side-menu>

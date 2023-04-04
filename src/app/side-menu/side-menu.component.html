@@ -1,0 +1,60 @@
+<mat-toolbar color="primary">
+  <span class="flex-spacer"></span>
+  <a mat-icon-button (click)="toggleService.toggleMenu()">
+    <mat-icon>close</mat-icon>
+  </a>
+</mat-toolbar>
+<div>
+  <mat-card *ngFor="let item of items">
+    <mat-card-content>
+      <!--
+    buttons to toggle qty (link to service)
+    button to remove item
+    -->
+      <span>{{ item.name }} </span>
+      <span>{{ item.quantity }}</span>
+      <span
+        >Price:
+        {{ item.quantity * item.price | currency : "ILS" : "symbol" }}</span
+      >
+    </mat-card-content>
+      <mat-card-actions>
+        <!--
+          <img src="getProductImage()" alt="{{ item.name }}" />
+        -->
+        <span class="margin-left">
+          <button
+            mat-fab-button
+            (click)="decreaseQty(item)"
+            [disabled]="item.quantity == 0"
+          >
+            <mat-icon>remove</mat-icon>
+          </button>
+          <button
+            mat-fab-button
+            (click)="increaseQty(item)"
+            [disabled]="item.quantity == 10"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+          
+          <a mat-icon-button (click)="removeFromCart(item)">
+            <mat-icon>delete</mat-icon>
+          </a>
+        </span>
+      </mat-card-actions>
+  </mat-card>
+  <div style="margin-top: 2em;"> <!--space on top and float right-->
+    <span class="flex-spacer"></span>
+    <a mat-button [disabled]="items.length == 0" routerLink="/checkout">
+      <mat-icon
+        matBadgeColor="accent"
+        matBadge="{{ items.length }}"
+        [matBadgeHidden]="items.length == 0"
+        aria-label="View Cart"
+      >
+        shopping_cart
+      </mat-icon>
+    </a>
+  </div>
+</div>
