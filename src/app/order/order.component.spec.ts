@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { OrderComponent } from './order.component';
 
@@ -8,7 +10,9 @@ describe('OrderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OrderComponent ]
+      declarations: [OrderComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+      imports: [BrowserAnimationsModule]
     })
     .compileComponents();
 
