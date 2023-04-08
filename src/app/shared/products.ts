@@ -16,8 +16,9 @@ export interface ITEM {
 }
 
 export const Products: PRODUCT[] = [
-    { id: 2, name: "olive_black", displayed_name: "Olive Dip (Black)", image: "../assets/images/black_olive.jpg", price: 20, quantity: 1, added: false },
+    // the order matters!! id needs to be consecutive
     { id: 1, name: "olive_green", displayed_name: "Olive Dip (green)", image: "../assets/images/green_olive.jpg", price: 20, quantity: 1, added: false },
+    { id: 2, name: "olive_black", displayed_name: "Olive Dip (Black)", image: "../assets/images/black_olive.jpg", price: 20, quantity: 1, added: false },
     { id: 3, name: "matbucha", displayed_name: "Matbucha", image: "../assets/images/matbucha.jpg", price: 20, quantity: 1, added: false },
     { id: 4, name: "tomato", displayed_name: "Tomato Dip", image: "../assets/images/tomato.jpg", price: 15, quantity: 1, added: false },
     { id: 5, name: "chummus", displayed_name: "Chummus", image: "../assets/images/hummus.jpg", price: 15, quantity: 1, added: false },

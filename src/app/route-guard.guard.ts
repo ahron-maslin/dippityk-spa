@@ -15,7 +15,7 @@ export class RouteGuardGuard implements CanActivate {
     if (items.length === 0) {
       this.router.navigate(['/order']);
     } else {
-      console.log("hello from route guard");
+      console.log("navigating to checkout component");
     }
     return true;
   }

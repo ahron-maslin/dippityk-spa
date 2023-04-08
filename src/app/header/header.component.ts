@@ -20,7 +20,6 @@ export class HeaderComponent {
     this.cartService.itemSubject.subscribe({
       next: (message) => {
         this.items = this.cartService.getItems();
-        console.log(message);
       }
     })
     // used to get localstorage from service (after subscribing)

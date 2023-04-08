@@ -15,7 +15,7 @@ export class CheckoutComponent {
 
   items = this.cartService.getItems();
 
-  sumTotal = this.items.reduce((sum, { price, quantity }) => sum + price * quantity, 0);
+  sumTotal = this.cartService.getTotal()
   
   submitted: boolean = false; // show and hide the success message
   isLoading: boolean = false; // disable the submit button if we're loading
@@ -43,10 +43,13 @@ export class CheckoutComponent {
 
   public onSubmit(): void {
     if (this.orderForm.status == 'VALID'
-        && this.items.length > 0
-        && this.honeypot.value == '') {
+    && this.items.length > 0
+    && this.honeypot.value == '') {
+      
       this.orderForm.disable() // disable form to prevent multiple submissions
       
+      this.isLoading = true;
+
       let formData: FormData = new FormData(); // data we will be sending to formspree
 
       formData.append('Name', this.orderForm.get('name')?.value);
@@ -54,8 +57,6 @@ export class CheckoutComponent {
       formData.append('Order', this.sanitizeOrder(this.cartService.getItems())); // clean up order items
       formData.append('Total', this.sumTotal.toString() + ' Shekels');
 
-      this.isLoading = true;
-      
       this.http.post('https://formspree.io/f/xjvlyjod', formData).subscribe({
         next: (response) => {
           this.submitted = true;
@@ -64,23 +65,23 @@ export class CheckoutComponent {
           this.items = this.cartService.clearCart(); // remove items (from local storage as well)
           console.warn('Your order has been submitted', this.orderForm.value);
           this.orderForm.reset();
+          this.orderForm.enable()
           this.router.navigate(['/thanks']); // when finished (if all is ok) navigate to thanks page
         },
         error: (error) => {
           this.responseMessage =
             'Oops! An error occurred... Reload the page and try again.';
-          this.orderForm.enable(); // re enable the form after a success
-          this.submitted = true; // show the response message
+          this.orderForm.enable(); 
+          this.submitted = false; // show the response message
           this.isLoading = false; // re enable the submit button
-          console.log(error);
+          console.error(error);
           this.orderForm.reset();
-          alert(this.responseMessage); // remove this on prod
         } 
       })
     }
   }
 
-  sanitizeOrder(items: ITEM[]): string {
+  private sanitizeOrder(items: ITEM[]): string {
     let outstr = '';
     items.map((item: ITEM) => {
       outstr += item.quantity + ' ' + item.name;
