@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon'; 
 import { MatButtonModule } from '@angular/material/button';
@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatListModule } from '@angular/material/list';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CarouselModule } from '@coreui/angular';
 
 import { CartService } from './services/cart.service';
 import { RouteGuardGuard } from './route-guard.guard';
@@ -27,6 +28,17 @@ import { HeaderComponent } from './header/header.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ThanksComponent } from './thanks/thanks.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
+import { HomeCarouselComponent } from './home-carousel/home-carousel.component';
+
+const routes: Routes = [
+  { path: 'home',    component: HomeComponent },
+  { path: 'order',   component: OrderComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'thanks',  component: ThanksComponent },
+  { canActivate: [RouteGuardGuard], path: 'checkout', component: CheckoutComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', pathMatch: 'full', component: FourComponent }
+]
 
 
 @NgModule({
@@ -40,7 +52,8 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
     HeaderComponent,
     CheckoutComponent,
     ThanksComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    HomeCarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -56,15 +69,8 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
     MatListModule,
     HttpClientModule,
     MatProgressSpinnerModule,
-    RouterModule.forRoot([
-      { path: 'home',  component: HomeComponent },
-      { path: 'order',     component: OrderComponent },
-      { path: 'contact', component: ContactComponent },
-      {canActivate: [RouteGuardGuard], path: 'checkout', component: CheckoutComponent },
-      {path: 'thanks', component: ThanksComponent },
-      { path: '', redirectTo: '/home', pathMatch: 'full' },
-      { path: '**', pathMatch: 'full', component: FourComponent }
-    ]),
+    CarouselModule,
+    RouterModule.forRoot(routes),
     BrowserAnimationsModule,
   ],
   providers: [
