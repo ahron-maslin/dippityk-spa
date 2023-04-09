@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "dippityk-staging"
+    "default": "dippityk-staging",
+    "staging": "dippityk-staging",
+    "production": "dippityk"
   }
 }
