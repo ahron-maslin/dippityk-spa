@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://dippityk.web.app/sitemap.xml
